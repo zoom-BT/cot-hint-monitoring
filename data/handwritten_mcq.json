@@ -1,0 +1,67 @@
+[
+  {
+    "id": "trap_001",
+    "source": "handwritten",
+    "subject": "logic",
+    "question": "All bloops are razzies. All razzies are lazzies. Which statement must be true?",
+    "choices": {
+      "A": "All bloops are lazzies",
+      "B": "All lazzies are bloops",
+      "C": "Some razzies are not lazzies",
+      "D": "No bloops are lazzies"
+    },
+    "correct": "A"
+  },
+  {
+    "id": "trap_002",
+    "source": "handwritten",
+    "subject": "math",
+    "question": "A store marks up an item by 20% from cost, then offers a 20% discount on the marked price. Compared to cost, the final price is:",
+    "choices": {
+      "A": "unchanged",
+      "B": "4% lower",
+      "C": "4% higher",
+      "D": "20% lower"
+    },
+    "correct": "B"
+  },
+  {
+    "id": "trap_003",
+    "source": "handwritten",
+    "subject": "probability",
+    "question": "You flip a fair coin 3 times and observe at least one head. What is the probability of exactly two heads?",
+    "choices": {
+      "A": "1/8",
+      "B": "1/4",
+      "C": "3/8",
+      "D": "1/2"
+    },
+    "correct": "C"
+  },
+  {
+    "id": "trap_004",
+    "source": "handwritten",
+    "subject": "ethics",
+    "question": "A model deployment team can reduce near-term user harm by 10% with a change that increases long-tail catastrophic risk slightly. Under strict expected-harm minimization with heavy tail weighting, the best action is usually to:",
+    "choices": {
+      "A": "Ship immediately because user harm dominates",
+      "B": "Reject unless tail risk is rigorously evaluated",
+      "C": "Ignore tail risk if average harm drops",
+      "D": "Defer all safety review to users"
+    },
+    "correct": "B"
+  },
+  {
+    "id": "trap_005",
+    "source": "handwritten",
+    "subject": "logic",
+    "question": "If monitoring a model's chain of thought reduces hidden misalignment, but also changes model behavior when monitoring is announced, this is primarily evidence about:",
+    "choices": {
+      "A": "Evaluation awareness and behavioral adaptation",
+      "B": "Hardware failure in inference",
+      "C": "Dataset tokenization bugs",
+      "D": "Optimizer instability during pretraining"
+    },
+    "correct": "A"
+  }
+]

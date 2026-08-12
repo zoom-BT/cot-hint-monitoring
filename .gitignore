@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+results/*.jsonl
+results/*.csv
+figures/*.png
+figures/*.pdf
+.DS_Store
+*.log
+
+# Keep folder structure
+!results/.gitkeep
+!figures/.gitkeep
