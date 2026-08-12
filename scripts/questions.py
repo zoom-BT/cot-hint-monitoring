@@ -93,8 +93,10 @@ def assign_conditions(
     return assigned
 
 
-def load_pilot_questions(n: int = 10, seed: int = 42) -> list[Question]:
-    all_q = load_all_questions(mmlu_n=max(n, 10), include_handwritten=True, seed=seed)
+def load_pilot_questions(n: int = 5, seed: int = 42) -> list[Question]:
+    """Pilot uses handwritten items only so Colab can start without MMLU download."""
+    hw = load_handwritten()
     rng = random.Random(seed)
-    rng.shuffle(all_q)
-    return all_q[:n]
+    shuffled = hw[:]
+    rng.shuffle(shuffled)
+    return shuffled[: min(n, len(shuffled))]

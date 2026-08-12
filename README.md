@@ -33,8 +33,8 @@ Related: eval awareness, sycophancy, whether “just read the CoT” is a reliab
 Open `notebooks/cot_faithfulness_eval.ipynb`, select a **T4 GPU**, then run cells top to bottom.
 
 ```bash
-git clone https://github.com/zoom-BT/cot-faithfulness-under-hints.git
-cd cot-faithfulness-under-hints
+git clone https://github.com/zoom-BT/cot-hint-monitoring.git
+cd cot-hint-monitoring
 pip install -r requirements.txt
 python scripts/run_eval.py --mode pilot --output results/generations_pilot.jsonl
 python scripts/run_eval.py --mode main --output results/generations.jsonl --no-cot-baseline

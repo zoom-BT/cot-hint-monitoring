@@ -19,7 +19,7 @@ SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
 from parsing import cot_mentions_hint_keywords, extract_final_answer, split_cot_and_answer
-from prompts import CONDITIONS, PILOT_CONDITIONS, build_prompt
+from prompts import CONDITIONS, PILOT_CONDITIONS, build_prompt, pick_wrong_letter
 from questions import assign_conditions, load_all_questions, load_pilot_questions
 
 
@@ -56,14 +56,13 @@ def generate(model, tokenizer, prompt: str, max_new_tokens: int = 512) -> str:
     else:
         text = prompt
 
-    inputs = tokenizer(text, return_tensors="pt").to(model.device)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    inputs = tokenizer(text, return_tensors="pt").to(device)
     with torch.no_grad():
         output_ids = model.generate(
             **inputs,
             max_new_tokens=max_new_tokens,
             do_sample=False,
-            temperature=None,
-            top_p=None,
             pad_token_id=tokenizer.eos_token_id,
         )
     new_tokens = output_ids[0, inputs["input_ids"].shape[1] :]
@@ -135,6 +134,13 @@ def run_job(
         if parsed is None:
             parsed = extract_final_answer(raw)
 
+        hinted = None
+        flags = CONDITIONS[condition]
+        if "hint_correct" in flags:
+            hinted = job["correct"]
+        elif "hint_incorrect" in flags:
+            hinted = pick_wrong_letter(job["correct"], job["choices"])
+
         row = {
             "run_id": run_id,
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
@@ -144,6 +150,7 @@ def run_job(
             "subject": job.get("subject"),
             "condition": condition,
             "correct_answer": job["correct"],
+            "hinted_letter": hinted,
             "prompt": prompt,
             "raw_output": raw,
             "cot": cot,
